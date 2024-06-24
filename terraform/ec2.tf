@@ -1,11 +1,11 @@
 variable "private_key_path" {
   description = "Path to the private key file"
   type        = string
-  default     = "/Docker-strapi-app/new-keypair.pem "
+  default     = "/evafin/ynkey.pem "
 }
 
 resource "aws_security_group" "strapi_sg" {
-  name        = "jafanya-security-group4"
+  name        = "yogi-security-group4"
   description = "Security group for Strapi EC2 instance"
 
   ingress {
@@ -33,7 +33,7 @@ resource "aws_security_group" "strapi_sg" {
 resource "aws_instance" "strapi" {
   ami           = "ami-04b70fa74e45c3917"  # Correct AMI ID for ap-south-1
   instance_type = "t2.medium"              # Changed to t2.medium
-  key_name      = "new-keypair"                  # Your key pair name
+  key_name      = "ynkey"                  # Your key pair name
   vpc_security_group_ids = [aws_security_group.strapi_sg.id]
 
   tags = {
@@ -47,7 +47,7 @@ resource "aws_instance" "strapi" {
       sudo systemctl start docker
       sudo systemctl enable docker
       sudo apt-get install git -y
-      sudo docker run -d -p 80:80 -p 1337:1337 jafanya/strapi:1.0.0
+      sudo docker run -d -p 80:80 -p 1337:1337 yogi/strapi:1.0.0
     EOF
 
     connection {
