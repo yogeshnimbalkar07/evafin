@@ -47,7 +47,7 @@ resource "aws_instance" "strapi" {
       sudo systemctl start docker
       sudo systemctl enable docker
       sudo apt-get install git -y
-      sudo docker run -d -p 80:80 -p 1337:1337 yogi/strapi:1.0.0
+      sudo docker run -d -p 80:80 -p 1337:1337 yogeshnimbalkar07/strapi:1.0.0
     EOF
 
     connection {
