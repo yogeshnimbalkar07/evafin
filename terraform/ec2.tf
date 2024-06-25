@@ -32,7 +32,7 @@ resource "aws_security_group" "strapi_sg" {
 
 resource "aws_instance" "strapi" {
   ami           = "ami-0f58b397bc5c1f2e8"  # Correct AMI ID for ap-south-1
-  instance_type = "t2.small"              # Changed to t2.medium
+  instance_type = "t2.micro"              # Changed to t2.medium
   key_name      = "ynkey"                  # Your key pair name
   vpc_security_group_ids = [aws_security_group.strapi_sg.id]
 
