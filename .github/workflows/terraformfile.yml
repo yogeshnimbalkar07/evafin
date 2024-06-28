@@ -31,18 +31,17 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
-
-      - name: Terraform Destroy
-        run: terraform destroy -auto-approve
-        working-directory: ./terraform
           
       - name: Initialize Terraform
         run: terraform init
         working-directory: ./terraform  # Update this path if necessary
 
-        
+      - name: Terraform Plan Destroy
+        run: terraform plan -destroy -out=destroy.plan
+
+      - name: Terraform Apply Destroy
+        run: terraform apply -auto-approve destroy.plan
+      
       - name: Apply Terraform
         run: terraform apply -auto-approve -var="private_key_path=/home/runner/.ssh/mySAKey.pem"
         working-directory: ./terraform  # Update this path if necessary
-
-     
