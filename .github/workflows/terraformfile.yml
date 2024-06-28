@@ -22,7 +22,7 @@ jobs:
         run: |
           mkdir -p /home/runner/.ssh
           echo "${{ secrets.YOGI_EC2_KEY }}" > /home/runner/.ssh/mySAKey.pem
-          chmod 600 /home/runner/.ssh/ynkey.pem
+          chmod 600 /home/runner/.ssh/mySAKey.pem
           ls -al /home/runner/.ssh  # Verify permissions and existence
           
       - name: Configure AWS Credentials
