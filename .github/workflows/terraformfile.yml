@@ -36,17 +36,6 @@ jobs:
         run: terraform init
         working-directory: ./terraform  # Update this path if necessary
 
-      - name: Plan Terraform Destroy
-        run: terraform plan -destroy -out=destroy.plan
-        working-directory: ./terraform  # Update this path if necessary
-
-      - name: Apply Terraform Destroy
-        run: terraform apply -auto-approve destroy.plan
-        working-directory: ./terraform  # Update this path if necessary
-
-      - name: Plan Terraform Apply
-        run: terraform plan -out=apply.plan
-        working-directory: ./terraform 
         
       - name: Apply Terraform
         run: terraform apply -auto-approve -var="private_key_path=/home/runner/.ssh/mySAKey.pem"
