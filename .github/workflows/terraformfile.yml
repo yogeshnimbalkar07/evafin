@@ -21,7 +21,7 @@ jobs:
       - name: Create SSH Key File
         run: |
           mkdir -p /home/runner/.ssh
-          echo "${{ secrets.YOGI_EC2_KEY }}" > /home/runner/.ssh/ynkey.pem
+          echo "${{ secrets.YOGI_EC2_KEY }}" > /home/runner/.ssh/mySAKey.pem
           chmod 600 /home/runner/.ssh/ynkey.pem
           ls -al /home/runner/.ssh  # Verify permissions and existence
           
@@ -37,5 +37,5 @@ jobs:
         working-directory: ./terraform  # Update this path if necessary
 
       - name: Apply Terraform
-        run: terraform apply -auto-approve -var="private_key_path=/home/runner/.ssh/ynkey.pem"
+        run: terraform apply -auto-approve -var="private_key_path=/home/runner/.ssh/mySAKey.pem"
         working-directory: ./terraform  # Update this path if necessary
